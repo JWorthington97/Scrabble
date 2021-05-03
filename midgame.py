@@ -8,6 +8,7 @@ def show_scrabble_board(board):
         row_index += 1
 
 def add_letter_to_hand():
+    ""
     # Check if remove_letter_from_bag returns False
     #if so, choose another letter to remove
     #Copy pasted from pregame - cut these lines out of pregame and replace with add_letter_to_hand
