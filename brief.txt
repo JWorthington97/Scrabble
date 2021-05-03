@@ -1,0 +1,78 @@
+Rename helper function files to bag_functions, board_functions, word_functions, score_functions
+
+
+Game start sequence
+    Instructions option
+    Inform how the game will look
+    Game setup - 1-4 players, or against AI
+
+As the program loads:
+x    Make an empty board (15x15)
+x    Create a dict of counts of each letter distribution (let's call letter bag)
+x    Create a dict of the score for each letter
+x    Build the dictionary dict  
+x    Randomly allocate each player 7 starting letters, removing from bag
+        (there might be a rule to reshuffle)
+    Create a scoreboard (keep it on the screen)
+    (Extras) Reference of all the double/triple letter/word tiles on the board (Using something like 2* or 3^ or 2$)
+    Determine who goes first (random)
+    
+On the first turn only:
+    Take 1 letter from the bag
+
+Each turn:
+    Display the board
+User provides:
+    Proposed word
+    Location to insert word on board (e.g. C4)
+    The direction of the word (Up, Down, Right) 
+
+Checking the word:
+    Program checks if user has all letters in their hand (except 
+    for the letter(s) they are joining onto on the board)
+    
+    Check if word would collide with other words on board
+       If so, we'd need to check if all other words are words too
+    If all is good, write word to board and calculate score
+
+Post-turn:
+    Add the score to the player
+    Get 8 letters back in your hand from the bag
+    Pass to the next player   
+
+Finishing the game:
+  To finish all letters are gone from the bag.
+
+#Drawbacks
+  You can see others' letters
+  AI might be hard to replicate
+  There might be lots of edge cases
+
+  Game end sequence
+
+
+#Additional Features
+  1. Letter/word multipliers
+  2. Adding a letter jumbler for inspiration
+  3. Expanding to 4 players
+  4. AI
+  5. Blanks (any character tile)
+
+#Why using a dict over an array
+Dict over array as searching in dict is O(1) vs O(n) for an array
+Dict dict['hello']
+3 big
+hell
+hello
+Hello
+
+SEARCHING: O(1)
+Converting from hello to lkds9034342 = hashing
+
+hell = 32498dfhsa9
+hello = lkds9034342
+Hello = 439dsks04
+
+
+dict['lkds9034342'] = 'hello'
+dict['lkds9034342'] = 8
