@@ -18,11 +18,12 @@ x    Randomly allocate each player 7 starting letters, removing from bag
     Determine who goes first (random) - The player that has the letter that is closest to “A” will begin the game. 
     
 Each turn:
-    Display the board
+x    Display the board
 Turn start:
-    Proposed word (Extras) OR PASS OR CHANGE LETTERS
-    Location to insert word on board (e.g. C4)
-    The direction of the word (Up, Down, Right) 
+x    Proposed word 
+      (Extras) OR PASS OR CHANGE LETTERS
+x    Location to insert word on board (e.g. C4)
+x    The direction of the word (Up, Down, Right) 
 
 Checking the word:
     Program checks if user has all letters in their hand (except 
