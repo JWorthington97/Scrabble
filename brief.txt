@@ -51,12 +51,12 @@ Finishing the game:
 
 
 #Additional Features
-  1. Letter/word multipliers
+  1.  Letter/word multipliers
   1.5 Exchange tiles for new tiles
-  2. Adding a letter jumbler for inspiration
-  3. Expanding to 4 players
-  4. AI
-  5. Blanks (any character tile)
+  2.  Adding a letter jumbler for inspiration
+  3.  Expanding to 4 players
+  4.  AI
+  5.  Blanks (any character tile)
 
 #Why using a dict over an array
 Dict over array as searching in dict is O(1) vs O(n) for an array
