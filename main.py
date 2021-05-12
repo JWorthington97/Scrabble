@@ -31,33 +31,17 @@ board[10][7] ='N'
 
 board[3][5] = '*'
 
-board[6][8] = 'O'
-board[6][9] = 'V'
-board[6][10] = 'E'
+# board[6][8] = 'O'
+# board[6][9] = 'V'
+# board[6][10] = 'E'
 
 board[8][5] = 'S'
 board[8][6] = 'A'
 
-board[3][6] = 'T'
+board[7][10] = 'T'
 
-# board[7][8] = 'T'
-# board[8][8] = 'H'
-# board[9][8] = 'E'
-# board[10][8] = 'R'
 
-#show_scrabble_board(board)
 
-# receive word, location, direction
-# find all the collisions on the board, and save them all as words
-# check all of the words
-#if ONE is not a word, can't put the received word down
-# 6              L O V E
-# 7              E T
-# 8          S A M H
-# 9              O E
-#10              N R
-
-#function to get array of collision words
 #function to check them all (already got)
 #function to add to board
 #function to check proposed word, direction, location not impeding another word
@@ -82,23 +66,6 @@ if word_check == -1:
 #We need to check the extra letters in their word that aren't in their hand fit on the board
 show_scrabble_board(board)
 
-#test_words = []
-#test_words.append(proposed_word)
-#going down each row
-#for row in word:
-    #word_on_board_start = [row,column]
-    #word_on_board_end = [row,column]
-    # checking left of the character in the word
-    #while board[row][column -1] != None or */^ or out of bounds:
-        #word_start = [row,column -1]
-    #checking right of character in the word
-    #while board[row][column + 1] != None or */^ or out of bounds:
-        # word_end = [row][column + 1]
-    #if word_start[1] = word_start[0] != 1:
-        #test_words.append(word) 
-
-words_to_test = []
-words_to_test.append(proposed_word)
 start_location = [6,8] # = 'I6'
 # they provide the whole word e.g OTHER
 # if down:
@@ -107,30 +74,20 @@ start_location = [6,8] # = 'I6'
 #   if board[row + len(word)][column] == proposed_word[-1]:
 #       they want to join on the last letter in the word
 
-#down checks
-for index, letter in enumerate(proposed_word):
-    #print("LETTER: " + letter)
-    on_board_word_start = [start_location[0] + index, start_location[1]] #Offsets for whatever row we are now on
-    on_board_word_end = [start_location[0] + index, start_location[1]]
 
-    #checking left
-    while board[on_board_word_start[0]][on_board_word_start[1] - 1] != ' ':
-        on_board_word_start[1] -= 1
-    
-    #checking right
-    while board[on_board_word_end[0]][on_board_word_end[1] + 1] != ' ':
-        on_board_word_end[1] += 1
-        
-    # append word to the words_to_test array
-    string = ""
-    for i in range(on_board_word_start[1], on_board_word_end[1] + 1):
-        string += board[on_board_word_start[0]][i]
-    words_to_test.append(str(string))
-print(words_to_test)
-
-# We need to check above and below the start and end index
+# Need to check all words in words_to_test
 # Figuring out where they are joining onto the board and then do NOT subtract from the hand
-            
+# Write to board (except the characters already on there)
+
+#add_word_to_board('LOVE', 'H6', 'R', board)
+show_scrabble_board(board)
+#words_to_test = get_words_from_board_right('LOVE', 'H6', board)
+#print(words_to_test)
+# check all of the words
+# if one ISN'T a word - ask user for a different word
+# if all ARE words add_word_to_board(words_to_test[0])
+#add_word_to_board('LOVE', 'H6', 'R', board)
 
 
-
+print(get_words_from_board_right('LOVE', 'H6', board))
+get_words_from_board_down
