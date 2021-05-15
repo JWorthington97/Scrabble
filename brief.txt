@@ -29,10 +29,11 @@ Checking the word:
     Program checks if user has all letters in their hand (except 
     for the letter(s) they are joining onto on the board)
     (while loop) If they don't have all the letters, ask for new word
-    
-    Check if word would collide with other words on board
-       If so, we'd need to check if all other words are words too
+x    Need to check if word joins on properly
+x   Check if word would collide with other words on board
+x     If so, we'd need to check if all other words are words too
     If all is good, write word to board and calculate score
+#   ADD A PASS OPTION = IF WORD = PASS, then skip go, JUMBLE x number of letters
 
 Post-turn:
     Add the score to the player
