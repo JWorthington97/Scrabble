@@ -1,6 +1,3 @@
-Rename helper function files to bag_functions, board_functions, word_functions, score_functions
-
-
 Game start sequence
     Instructions option
     Inform how the game will look
@@ -13,9 +10,8 @@ x    Create a dict of the score for each letter
 x    Build the dictionary dict  
 x    Randomly allocate each player 7 starting letters, removing from bag
         (there might be a rule to reshuffle)
-    Create a scoreboard (keep it on the screen)
-    (Extras) Reference of all the double/triple letter/word tiles on the board (Using something like 2* or 3^ or 2$)
-    Determine who goes first (random) - The player that has the letter that is closest to “A” will begin the game. 
+x    Create a scoreboard (keep it on the screen)
+    (Extras) Reference of all the double/triple letter/word tiles on the board (Using something like 2* or 3^ or 2$) 
     
 Each turn:
 x    Display the board

@@ -6,7 +6,6 @@ def create_player_hands(number_of_players, number_of_ai, bag):
     #print "Please only provide 4 players"
     player_hands = []
     for player in range(number_of_players):
-        print(player)
         player_hands.append(assign_starting_hand(bag))
     return player_hands
 
