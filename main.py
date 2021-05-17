@@ -61,3 +61,4 @@ while end_game == 0: # Need to be while all players do NOT pass
 # If no more letters in bag, or both players pass
 # You then calculate the scores of the letters in their hand and deduct from final scores
 # The game ends when all letters have been drawn and one player uses his or her last letter; or when all possible plays have been made.
+#test what happens when you run out of letters (set dict to all 0)
