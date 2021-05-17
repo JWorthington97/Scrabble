@@ -12,10 +12,13 @@ letter_values = create_letter_values()
 dictionary = create_hashed_dictionary('dictionary.txt')
 player_hands = create_player_hands(2, 0, bag)
 scores = [0, 0, 0, 0]
+skip = [0, 0, 0, 0]
 
 # The game:
 first_go = 1
-while True: # Need to be while all players do NOT pass
+end_game = 0
+#while count(letters in bag) > 0 or skip[0] != 1 and skip[1] != 1
+while end_game == 0: # Need to be while all players do NOT pass
     for player, hand in enumerate(player_hands):
         print(f"\nPlayer {player}'s turn.\nScore: {scores[player]}\nHand: {' '.join(hand)}\n")
         words_to_test = [None] # Set to None so first instance of while loop doesn't error
@@ -43,13 +46,18 @@ while True: # Need to be while all players do NOT pass
         scores[player] += round_score
         print(f"You scored {round_score} points!\n"), sleep(2), show_scrabble_board(board)
         first_go = 0
+        print(bag)
+        print(sum(bag.values()))
+        print(min(bag.values()))
+        #if count of all lettrs in bag == 0, end_game = 1
 
 
 
 
-# add score
+
 # Jumble
 # Pass logic / End condition
 
 # If no more letters in bag, or both players pass
 # You then calculate the scores of the letters in their hand and deduct from final scores
+# The game ends when all letters have been drawn and one player uses his or her last letter; or when all possible plays have been made.

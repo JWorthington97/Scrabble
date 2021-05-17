@@ -20,7 +20,9 @@ def assign_starting_hand(bag):
     return starting_hand
 
 def add_letter_to_hand(player_hands, player_index, bag):
-    letter = choices(list(bag.keys()), weights=bag.values(), k=1)[0]
+    letter = choices(list(bag.keys()), weights=bag.values(), k=1)[0] 
+    #while remove_letter_from_bag(letter, bag): #or bag.values().sum:
+        #letter = choices(list(bag.keys()), weights=bag.values(), k=1)[0]
     if remove_letter_from_bag(letter, bag):
         if None not in player_hands[player_index]:
             return False

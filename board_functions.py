@@ -97,7 +97,7 @@ def user_input_validity(proposed_word, proposed_location, proposed_direction, bo
                 missing_letters.remove(board[row][column + index])
         else: # For Down
             if board[row + index][column] in missing_letters:
-                missing_letters.remove(board[row][column + index])
+                missing_letters.remove(board[row + index][column])
     # run over it again to check hand
     for letter in player_hand:
         if letter in missing_letters:
@@ -143,19 +143,24 @@ def get_words_from_board_down(proposed_word, start_location, board):
         on_board_word_end = [start_location[0] + index, start_location[1]]
 
         #checking left
-        while in_function_board[on_board_word_start[0]][on_board_word_start[1] - 1] != ' ' and on_board_word_start[1] - 1 >= 0:
-            on_board_word_start[1] -= 1
+        if index != -1 and in_function_board[on_board_word_start[0]][on_board_word_start[1]] != ' ':
+            while in_function_board[on_board_word_start[0]][on_board_word_start[1] - 1] != ' ' and on_board_word_start[1] - 1 >= 0:
+                on_board_word_start[1] -= 1
         
         #checking right
-        while on_board_word_end[1] + 1 < 15 and in_function_board[on_board_word_end[0]][on_board_word_end[1] + 1] != ' ':
-            on_board_word_end[1] += 1
+        if index != len(proposed_word) + 1 and in_function_board[on_board_word_start[0]][on_board_word_start[1]] != ' ':
+            while on_board_word_end[1] + 1 < 15 and in_function_board[on_board_word_end[0]][on_board_word_end[1] + 1] != ' ':
+                on_board_word_end[1] += 1
             
         # append word to the words_to_test array
         string = ""
         for i in range(on_board_word_start[1], on_board_word_end[1] + 1):
             string += in_function_board[on_board_word_start[0]][i]
         if len(string) > 1:
-            words_to_test.append(str(string))
+            if index == -1 and string[0] == ' ':
+                continue
+            else:
+                words_to_test.append(str(string))
     return words_to_test
 
 # right checks
@@ -171,17 +176,22 @@ def get_words_from_board_right(proposed_word, start_location, board):
         on_board_word_end = [start_location[0], start_location[1] + index]
 
         #checking up
-        while in_function_board[on_board_word_start[0] - 1][on_board_word_start[1]] != ' ' and on_board_word_start[0] - 1 >= 0:
-            on_board_word_start[0] -= 1
+        if index != -1 and in_function_board[on_board_word_start[0]][on_board_word_start[1]] != ' ':
+            while in_function_board[on_board_word_start[0] - 1][on_board_word_start[1]] != ' ' and on_board_word_start[0] - 1 >= 0:
+                on_board_word_start[0] -= 1
         
         #checking down
-        while on_board_word_end[0] + 1 < 15 and in_function_board[on_board_word_end[0] + 1][on_board_word_end[1]] != ' ':
-            on_board_word_end[0] += 1
+        if index != len(proposed_word) + 1 and in_function_board[on_board_word_start[0]][on_board_word_start[1]] != ' ':
+            while on_board_word_end[0] + 1 < 15 and in_function_board[on_board_word_end[0] + 1][on_board_word_end[1]] != ' ':
+                on_board_word_end[0] += 1
             
         # append word to the words_to_test array
         string = ""
         for i in range(on_board_word_start[0], on_board_word_end[0] + 1):
             string += in_function_board[i][on_board_word_start[1]]
         if len(string) > 1:
-            words_to_test.append(str(string))
+            if index == -1 and string[0] == ' ':
+                continue
+            else:
+                words_to_test.append(str(string))
     return words_to_test
