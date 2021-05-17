@@ -1,4 +1,4 @@
-from random import randint, choice
+from random import randint, choice, choices
 from bag_functions import remove_letter_from_bag
 
 def create_player_hands(number_of_players, number_of_ai, bag):
@@ -13,14 +13,15 @@ def create_player_hands(number_of_players, number_of_ai, bag):
 def assign_starting_hand(bag):
     starting_hand = []
     for i in range(0,7):
-        letter = chr(randint(65,90))
+        #letter = chr(randint(65,90))
+        letter = choices(list(bag.keys()), weights=bag.values(), k=1)[0]
         # When assigning letters in the midgame function, we will need to check whether remove_letter_from_bag returns True/False
         remove_letter_from_bag(letter, bag)
         starting_hand.append(letter)
     return starting_hand
 
 def add_letter_to_hand(player_hands, player_index, bag):
-    letter = choice(list(bag))
+    letter = choices(list(bag.keys()), weights=bag.values(), k=1)[0]
     if remove_letter_from_bag(letter, bag):
         if None not in player_hands[player_index]:
             return False
@@ -31,9 +32,10 @@ def add_letter_to_hand(player_hands, player_index, bag):
 
 def remove_letters_from_hand(player_hand, proposed_word, proposed_location, proposed_direction, board):
     letters_to_remove = []
+    new_hand = []
     word = proposed_word.strip().upper()
     direction = proposed_direction.strip().upper()
-    column = ord(proposed_location[0]) - 65 # ASCII value for 'A'
+    column = ord(proposed_location[0].upper().strip()) - 65 # ASCII value for 'A'
     row = int(proposed_location[1::])
 
     for index, letter in enumerate(word):
@@ -43,15 +45,6 @@ def remove_letters_from_hand(player_hand, proposed_word, proposed_location, prop
         else: # For Down
             if board[row + index][column] == ' ':
                 letters_to_remove.append(letter)
-    
     for letter in letters_to_remove:
         player_hand[player_hand.index(letter)] = None
-
     return player_hand
-
-
-
-
-        
-#for loop to iterate over every charer in the inputted word
-#check if 

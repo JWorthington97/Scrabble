@@ -26,19 +26,19 @@ x    Location to insert word on board (e.g. C4)
 x    The direction of the word (Up, Down, Right) 
 
 Checking the word:
-    Program checks if user has all letters in their hand (except 
-    for the letter(s) they are joining onto on the board)
-    (while loop) If they don't have all the letters, ask for new word
+x    Program checks if user has all letters in their hand (except 
+x    for the letter(s) they are joining onto on the board)
+x    (while loop) If they don't have all the letters, ask for new word
 x    Need to check if word joins on properly
 x   Check if word would collide with other words on board
 x     If so, we'd need to check if all other words are words too
-    If all is good, write word to board and calculate score
+x    If all is good, write word to board and calculate score
 #   ADD A PASS OPTION = IF WORD = PASS, then skip go, JUMBLE x number of letters
 
 Post-turn:
-    Add the score to the player
-    Get 7 letters back in your hand from the bag (logic written)
-    Pass to the next player   
+x    Add the score to the player
+x    Get 7 letters back in your hand from the bag (logic written)
+x    Pass to the next player   
 
 Finishing the game:
   To finish all letters are gone from the bag.

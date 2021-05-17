@@ -21,8 +21,6 @@ def show_scrabble_board(board):
         row_index += 1
 
 def user_input_validity(proposed_word, proposed_location, proposed_direction, board, first_go, player_hand):
-    column = ord(proposed_location[0].upper()) - 65 # ASCII value for 'A'
-    row = int(proposed_location[1::])
     #word checks 
     word = proposed_word.upper().strip()
     if word.isalpha() == False:
@@ -49,6 +47,8 @@ def user_input_validity(proposed_word, proposed_location, proposed_direction, bo
         print("Direction invalid. Please provide one of the following: 'R', 'D',  'RIGHT', 'DOWN'")
         return False # Invalid direction
 
+    column = ord(proposed_location[0].upper()) - 65 # ASCII value for 'A'
+    row = int(proposed_location[1::])
     # overwrite check
     for index, letter in enumerate(word):
         if direction in ['R', 'RIGHT']:
@@ -73,6 +73,20 @@ def user_input_validity(proposed_word, proposed_location, proposed_direction, bo
     if joins_onto_board == 0 and first_go != 1:
         print("Word does not join onto the board. Please provide new location")
         return False
+    if first_go == 1:
+        crosses_h6 = 0
+        for index, letter in enumerate(word):
+            if direction in ['R', 'RIGHT']:
+                if row == 6 and column + index == 7:
+                    crosses_h6 = 1
+            else: # For Down
+                if row + index == 6 and column == 7:
+                    crosses_h6 = 1
+
+        if crosses_h6 == 0:
+            print("Please place the first word through the centre of the board")
+            return False
+
 
     # letters in hand or on the board
     missing_letters = list(word)
