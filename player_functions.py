@@ -8,7 +8,6 @@ def create_player_hands(number_of_players, number_of_ai, bag):
     for player in range(number_of_players):
         print(player)
         player_hands.append(assign_starting_hand(bag))
-        player_hands[player].append(None) # make sure to remove
     return player_hands
 
 def assign_starting_hand(bag):
@@ -29,3 +28,30 @@ def add_letter_to_hand(player_hands, player_index, bag):
             none_index = player_hands[player_index].index(None)
             player_hands[player_index][none_index] = letter
             return True
+
+def remove_letters_from_hand(player_hand, proposed_word, proposed_location, proposed_direction, board):
+    letters_to_remove = []
+    word = proposed_word.strip().upper()
+    direction = proposed_direction.strip().upper()
+    column = ord(proposed_location[0]) - 65 # ASCII value for 'A'
+    row = int(proposed_location[1::])
+
+    for index, letter in enumerate(word):
+        if direction in ['R', 'RIGHT']:
+            if board[row][column + index] == ' ':
+                letters_to_remove.append(letter)
+        else: # For Down
+            if board[row + index][column] == ' ':
+                letters_to_remove.append(letter)
+    
+    for letter in letters_to_remove:
+        player_hand[player_hand.index(letter)] = None
+
+    return player_hand
+
+
+
+
+        
+#for loop to iterate over every charer in the inputted word
+#check if 
