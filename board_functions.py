@@ -138,7 +138,7 @@ def get_words_from_board_down(proposed_word, start_location, board):
     # We need to add this to convert the user provided start location (e.g. 'H6') to the row and column indices for the board (e.g. 6,7)
     start_location = [int(start_location[1::]), ord(start_location[0].upper()) - 65]
 
-    for index in range(-1, len(proposed_word) + 1):
+    for index in range(-1, len(proposed_word)):#+ 1):
         on_board_word_start = [start_location[0] + index, start_location[1]] #Offsets for whatever row we are now on
         on_board_word_end = [start_location[0] + index, start_location[1]]
 

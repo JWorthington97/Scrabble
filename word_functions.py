@@ -42,7 +42,7 @@ def are_words_in_dictionary(words_to_test, dictionary):
     for word in words_to_test:
         if word not in dictionary.keys():
             if word != None:
-                print(f"{word} is not a word! - TESTING")
+                print(f"{word} is not a word!")
             return False
     return True
 

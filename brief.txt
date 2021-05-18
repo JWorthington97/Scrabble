@@ -37,7 +37,7 @@ x    Get 7 letters back in your hand from the bag (logic written)
 x    Pass to the next player   
 
 Finishing the game:
-  To finish all letters are gone from the bag.
+#  To finish all letters are gone from the bag.
 
 #Drawbacks
   You can see others' letters
