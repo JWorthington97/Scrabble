@@ -14,11 +14,6 @@ player_hands = create_player_hands(2, 0, bag)
 scores = [0, 0] #, 0, 0]
 skip = [0, 0] #[0, 0]
 
-board[10][2] = 'R'
-board[11][2] = 'A'
-board[12][2] = 'I'
-board[13][2] = 'N'
-
 # The game:
 first_go = 1
 end_game = 0
