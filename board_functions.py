@@ -1,4 +1,5 @@
 from copy import deepcopy
+from time import sleep
 # function initialises an empty board array
 def create_scrabble_board():
     # double spaces here because of the 2*
@@ -195,3 +196,14 @@ def get_words_from_board_right(proposed_word, start_location, board):
             else:
                 words_to_test.append(str(string))
     return words_to_test
+
+def title():
+    print("""
+     _____                _     _     _      
+    /  ___|              | |   | |   | |     
+    \ `--.  ___ _ __ __ _| |__ | |__ | | ___ 
+     `--. \/ __| '__/ _` | '_ \| '_ \| |/ _ \\
+    /\__/ / (__| | | (_| | |_) | |_) | |  __/
+    \____/ \___|_|  \__,_|_.__/|_.__/|_|\___|                                                                                                               
+    """)
+    sleep(3)

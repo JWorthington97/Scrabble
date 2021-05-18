@@ -2,7 +2,11 @@ from board_functions import *
 from bag_functions import *
 from player_functions import *
 from word_functions import *
-from time import sleep
+
+title()
+print("Bla de bla instructions\n /pass and /replace 2 ")
+sleep(2)
+input("Press any key to continue ")
 
 # Initialising variables
 board = create_scrabble_board()
@@ -33,6 +37,10 @@ for player, hand in enumerate(player_hands):
     for letter in hand:
         if letter != None:
             scores[player] -= letter_values[letter]
-print(f"Player {scores.index(max(scores))} wins with {max(scores)} points! ")
+    print(f"Player {player}'s final score is {scores[player]}")
+
+print(f"/nPlayer {scores.index(max(scores))} wins with {max(scores)} points!")
 
 # Jumble
+
+#instructions and replace characters
