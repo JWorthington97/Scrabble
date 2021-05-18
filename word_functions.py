@@ -45,3 +45,10 @@ def are_words_in_dictionary(words_to_test, dictionary):
                 print(f"{word} is not a word!")
             return False
     return True
+
+def calculate_score(letter_values, words_to_test): #multiplier
+    round_score = 0
+    for word in words_to_test:
+        for char in word:
+            round_score += letter_values[char]
+    return round_score
