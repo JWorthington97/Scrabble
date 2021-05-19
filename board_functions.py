@@ -2,7 +2,6 @@ from copy import deepcopy
 from time import sleep
 # function initialises an empty board array
 def create_scrabble_board():
-    # double spaces here because of the 2*
     array = []
     for i in range(15):
         array.append([' ']*15)
@@ -130,7 +129,6 @@ def add_word_to_board(proposed_word, proposed_location, proposed_direction, boar
                 board[row + index][column] = letter  
     return 0
 
-#down checks
 def get_words_from_board_down(proposed_word, start_location, board):
     words_to_test = []
     words_to_test.append(proposed_word.strip().upper())
@@ -164,7 +162,6 @@ def get_words_from_board_down(proposed_word, start_location, board):
                 words_to_test.append(str(string))
     return words_to_test
 
-# right checks
 def get_words_from_board_right(proposed_word, start_location, board): 
     words_to_test = []
     words_to_test.append(proposed_word.strip().upper())
@@ -197,7 +194,7 @@ def get_words_from_board_right(proposed_word, start_location, board):
                 words_to_test.append(str(string))
     return words_to_test
 
-def title():
+def title_sequence():
     print("""
      _____                _     _     _      
     /  ___|              | |   | |   | |     
@@ -206,4 +203,12 @@ def title():
     /\__/ / (__| | | (_| | |_) | |_) | |  __/
     \____/ \___|_|  \__,_|_.__/|_.__/|_|\___|                                                                                                               
     """)
-    sleep(3)
+    sleep(2)
+    print("""Instructions:
+    1. Normal Scrabble rules apply.
+    2. Pass in start location with the column first e.g. H6.
+    3. Pass in either R or D to provide the direction of your word.
+    4. Use /pass to skip your go.
+    5. Use /replace to replace characters in your hand e.g. /replace ABC.
+    """)
+    input("Press any key to start the game! ")
