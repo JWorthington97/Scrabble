@@ -1,4 +1,4 @@
-from random import randint, choice, choices
+from random import choices
 from time import sleep
 from bag_functions import remove_letter_from_bag
 from board_functions import *
@@ -15,7 +15,6 @@ def create_player_hands(number_of_players, number_of_ai, bag):
 def assign_starting_hand(bag):
     starting_hand = []
     for i in range(0,7):
-        #letter = chr(randint(65,90))
         letter = choices(list(bag.keys()), weights=bag.values(), k=1)[0]
         # When assigning letters in the midgame function, we will need to check whether remove_letter_from_bag returns True/False
         remove_letter_from_bag(letter, bag)
@@ -27,8 +26,6 @@ def add_letter_to_hand(player_hands, player_index, bag):
     if sum(bag.values()) == 0:
         return -2
     letter = choices(list(bag.keys()), weights=bag.values(), k=1)[0] 
-    #while remove_letter_from_bag(letter, bag): #or bag.values().sum:
-        #letter = choices(list(bag.keys()), weights=bag.values(), k=1)[0]
     if remove_letter_from_bag(letter, bag):
         if None not in player_hands[player_index]:
             return False
@@ -39,7 +36,6 @@ def add_letter_to_hand(player_hands, player_index, bag):
 
 def remove_letters_from_hand(player_hand, proposed_word, proposed_location, proposed_direction, board):
     letters_to_remove = []
-    new_hand = []
     word = proposed_word.strip().upper()
     direction = proposed_direction.strip().upper()
     column = ord(proposed_location[0].upper().strip()) - 65 # ASCII value for 'A'
@@ -67,10 +63,32 @@ def play_round(player, hand, player_hands, scores, dictionary, letter_values, bo
             proposed_word = input("Word: ")
             if proposed_word == '/pass':
                 return -1
+            if proposed_word.split(' ')[0] == '/replace': #/replace ABC
+                for character in proposed_word.split(' ')[1]:
+                    bag[character] += 1
+                    player_hands[player].remove(character)
+                    player_hands[player].append(None)
+                for i in range(0,player_hands[player].count(None)):
+                    if add_letter_to_hand(player_hands, player, bag) == -1:
+                        return "Bag is empty! Use /pass to end the game"
+                return -2
+
             proposed_location, proposed_direction = input("Start location: "), input("Word direction: ")
         
         while user_input_validity(proposed_word, proposed_location, proposed_direction, board, first_go, player_hands[player]) == False:
             proposed_word = input("Word: ")
+            if proposed_word == '/pass':
+                return -1
+            if proposed_word.split(' ')[0] == '/replace': #/replace ABC
+                for character in proposed_word.split(' ')[1]:
+                    bag[character] += 1
+                    player_hands[player].remove(character)
+                    player_hands[player].append(None)
+                for i in range(0,player_hands[player].count(None)):
+                    if add_letter_to_hand(player_hands, player, bag) == -1:
+                        return "Bag is empty! Use /pass to end the game"
+                return -2
+                
             proposed_location, proposed_direction = input("Start location: "), input("Word direction: ")
             
         # Right or Down
@@ -82,13 +100,19 @@ def play_round(player, hand, player_hands, scores, dictionary, letter_values, bo
             print("Words:", ', '.join(words_to_test))
 
     player_hands[player] = remove_letters_from_hand(hand, proposed_word, proposed_location, proposed_direction, board)
-    # replace missing letters in player hand
+
+    # Replace missing letters in player hand
     for i in range(0,player_hands[player].count(None)):
         if add_letter_to_hand(player_hands, player, bag) == -1:
             return "Bag is empty! Use /pass to end the game"
 
     add_word_to_board(proposed_word, proposed_location, proposed_direction, board) 
+
+    #Scoring
     round_score = calculate_score(letter_values, words_to_test)
-    scores[player] += round_score
-    print(f"You scored {round_score} points!\n"), sleep(2), show_scrabble_board(board)
-    first_go = 0
+    if first_go == 1:
+        scores[player] += round_score * 2
+        print(f"You scored {round_score * 2} points!\n"), sleep(2), show_scrabble_board(board)
+    else:
+        scores[player] += round_score
+        print(f"You scored {round_score} points!\n"), sleep(2), show_scrabble_board(board)

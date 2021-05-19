@@ -34,7 +34,6 @@ def create_hashed_dictionary(dictionary_path):
     dictionary = {}
     with open(dictionary_path, 'r') as dictionary_file:
         for word in dictionary_file:
-            # add hashing algorithm in here
             dictionary[word.strip()] = None
     return dictionary
 

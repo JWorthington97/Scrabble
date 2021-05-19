@@ -2,7 +2,8 @@ from board_functions import *
 from bag_functions import *
 from player_functions import *
 from word_functions import *
-from time import sleep
+
+title_sequence()
 
 # Initialising variables
 board = create_scrabble_board()
@@ -33,6 +34,8 @@ for player, hand in enumerate(player_hands):
     for letter in hand:
         if letter != None:
             scores[player] -= letter_values[letter]
-print(f"Player {scores.index(max(scores))} wins with {max(scores)} points! ")
+    print(f"Player {player}'s final score is {scores[player]}")
 
-# Jumble
+print(f"\nPlayer {scores.index(max(scores))} wins with {max(scores)} points!")
+
+
